@@ -1,0 +1,23 @@
+<div class="product">
+    <div class="product-back">
+        <a mat-raised-button color="accent" [routerLink]="['/products']">Go To Products</a>
+    </div>
+    <mat-card class="product-card" *ngIf="product">
+        <mat-card-title-group>
+            <mat-card-title>{{ product.name }}</mat-card-title>
+            <mat-card-subtitle>Id: {{ product.id }}</mat-card-subtitle>
+            <mat-card-subtitle>Count: {{ product.count }}</mat-card-subtitle>
+            <mat-card-subtitle>Weight: {{ product.weight }}</mat-card-subtitle>
+            <img mat-card-md-image [src]="product.imageUrl">
+        </mat-card-title-group>
+        <mat-card-content>
+            Size: {{ product.size.width }} x {{ product.size.height }}
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="openModal()" mat-flat-button color="primary">Edit</button>
+        </mat-card-actions>
+    </mat-card>
+    <a mat-raised-button [routerLink]="['/products']" *ngIf="!product">Go to Hope Page due to wrong id of Product</a>
+</div>
+
+<app-product-add (actModal)="closeModal($event)" [isAddProduct]="isEditProduct"></app-product-add>

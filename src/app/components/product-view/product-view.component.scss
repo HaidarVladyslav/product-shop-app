@@ -1,0 +1,12 @@
+.product {
+    padding: 50px;
+    &-card {
+        min-width: 500px;
+        border: 1px solid red;
+        margin: 20px;
+    }
+
+    &-back {
+        text-align: center;
+    }
+}

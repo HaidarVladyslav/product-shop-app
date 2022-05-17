@@ -1,0 +1,37 @@
+<!-- 
+<p>{{ comments | json}}</p>
+<p>{{ products | json}}</p>
+ -->
+
+<div class="product-menu">
+    <mat-form-field class="product-search" appearance="fill">
+        <mat-label>Select sorting</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let option of options" [value]="option.value">
+            {{option.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button (click)="openModal()" mat-raised-button color="accent">Add Product</button>
+</div>
+
+<div class="products" *ngIf="products">
+    <mat-card class="product-card" *ngFor="let product of products">
+        <mat-card-title-group>
+            <mat-card-title>{{ product.name }}</mat-card-title>
+            <mat-card-subtitle>Count: {{ product.count }}</mat-card-subtitle>
+            <mat-card-subtitle>Weight: {{ product.weight }}</mat-card-subtitle>
+            <img mat-card-md-image [src]="product.imageUrl" alt="image">
+        </mat-card-title-group>
+        <mat-card-content>
+            Size: {{ product.size.width }} x {{ product.size.height }}
+        </mat-card-content>
+        <mat-card-actions>
+            <button [routerLink]="['/product-view', product.id]" mat-flat-button color="primary">View more</button>
+            <button (click)="deleteProduct(product.id)" class="delete" mat-flat-button color="warn">Delete</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<h3 *ngIf="!products">No Products Yet</h3>
+
+<app-product-add (actModal)="closeModal($event)" [isAddProduct]="isAddProduct"></app-product-add>

@@ -1,0 +1,50 @@
+<div [style.display]="isAddProduct" class="modal">
+    <div class="modal-content">
+        <div class="modal-menu">
+            <button mat-button color="warn" (click)="closeModal()" class="close">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <form [formGroup]="addForm" class="form" (ngSubmit)="onSubmit()">
+            <mat-form-field class="form-name" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input formControlName="name" matInput>
+            </mat-form-field><br>
+            <div class="form-params">
+                <mat-form-field appearance="fill">
+                    <mat-label>Count</mat-label>
+                    <input min="0" type="number" formControlName="count" matInput>
+                </mat-form-field>
+                <div class="form-size" formGroupName="size" class="size">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Width</mat-label>
+                        <input formControlName="width" min="0" type="number" matInput>
+                    </mat-form-field>
+                    <mat-form-field [style.margin-left.px]="30" appearance="fill">
+                        <mat-label>Height</mat-label>
+                        <input formControlName="height" min="0" type="number" matInput>
+                    </mat-form-field>
+                </div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Weight</mat-label>
+                    <input formControlName="weight" type="text"
+                        placeholder="It should be like value with measuring sign like '200g'" matInput>
+                </mat-form-field>
+            </div>
+            <div class="form-comments">
+                <mat-form-field class="form-comments__content" appearance="fill">
+                    <mat-label>Comments</mat-label>
+                    <textarea formControlName="comments" matInput></textarea>
+                </mat-form-field>
+            </div>
+            <div class="form-url">
+                <mat-form-field class="form-url__content" appearance="fill">
+                    <mat-label>Image URL</mat-label>
+                    <input formControlName="imageUrl" matInput>
+                </mat-form-field>
+            </div>
+            <button (click)="closeModal()" class="form-submit" [disabled]="!addForm.valid" type="submit" mat-raised-button color="primary">Add
+                Product</button>
+        </form>
+    </div>
+</div>
